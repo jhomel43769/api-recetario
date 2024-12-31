@@ -60,7 +60,12 @@ export const deleteUser = async(req, res) => {
 
         const existeUser = await prisma.user.findUnique({
             where: { id },
-
+        });
+        if (!existeUser) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        const deleteUser = await prisma.user.delete({
+            where: { id },
         });
         res.status(200).json({ message: "Usuario borrado con exito", user: deleteUser });
     } catch { error } {
