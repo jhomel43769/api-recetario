@@ -1,5 +1,6 @@
 import express from "express";
 import recetasRoutes from "./src/routes/recetas.routes.js";
+import userRoutes from "./src/routes/user.routes.js";
 import morgan from "morgan";
 import cors from "cors"
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(morgan("common"));
 
 app.use("/api", recetasRoutes);
+app.use("/api", userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

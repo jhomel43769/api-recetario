@@ -53,3 +53,17 @@ export const updateUser = async(req, res) => {
         res.status(400).json({ error: 'Error en el metodo PUT', message: error.message });
     }
 };
+
+export const deleteUser = async(req, res) => {
+    try {
+        const { id } = req.params;
+
+        const existeUser = await prisma.user.findUnique({
+            where: { id },
+
+        });
+        res.status(200).json({ message: "Usuario borrado con exito", user: deleteUser });
+    } catch { error } {
+        res.status(400).json({ error: 'Error en el metodo DELETE', message: error.message });
+    }
+};
