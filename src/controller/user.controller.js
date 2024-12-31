@@ -20,10 +20,36 @@ export const createUser = async(req, res) => {
                 apellido,
                 email,
                 password
-            };
+            }
         });
         res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ error: 'Error en el metodo POST', message: error.message });
+    }
+};
+
+export const updateUser = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const { nombre, apellido, email, password } = req.body;
+        const existingUser = await prisma.user.findUnique({
+            where: { id }
+        });
+        if (!existingUser) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        const updatedUser = await prisma.user.update({
+            where: { id },
+            data: {
+                nombre,
+                apellido,
+                email,
+                password
+            }
+
+        });
+        res.status(200).json(updatedUser);
+    } catch { error } {
+        res.status(400).json({ error: 'Error en el metodo PUT', message: error.message });
     }
 };
