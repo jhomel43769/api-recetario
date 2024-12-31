@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("common"));
 
-app.use("/api", recetasRoutes);
-app.use("/api", userRoutes);
+app.use("/api/recetas", recetasRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

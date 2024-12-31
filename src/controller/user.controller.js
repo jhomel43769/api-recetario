@@ -2,7 +2,7 @@ import { prisma } from '../../db.js';
 
 export const getUsers = async(req, res) => {
     try {
-        const users = await prisma.users.findMany();
+        const users = await prisma.user.findMany();
 
         res.status(200).json(users);
     } catch (error) {
@@ -14,7 +14,7 @@ export const createUser = async(req, res) => {
     try {
         const { nombre, apellido, email, password } = req.body;
 
-        const user = await prisma.create({
+        const user = await prisma.user.create({
             data: {
                 nombre,
                 apellido,
