@@ -1,6 +1,6 @@
 import express from "express";
 import recetasRoutes from "./src/routes/recetas.routes.js";
-import userRoutes from "./src/routes/recetas.routes.js";
+import userRoutes from "./src/routes/user.routes.js";
 import morgan from "morgan";
 import cors from "cors"
 
